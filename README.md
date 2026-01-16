@@ -156,3 +156,7 @@ This project is open source and available under the MIT License.
 ## Contributing
 
 Contributions are welcome! Feel free to submit issues or pull requests to improve the evaluator.
+
+
+🧑‍💻 Author
+-`Agam Kumar`
