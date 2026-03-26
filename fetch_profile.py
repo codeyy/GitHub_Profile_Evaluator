@@ -11,7 +11,7 @@ class GitHubProfile:
     BASE_URL = "https://api.github.com"
     API_TIMEOUT = 10
     REPOS_PER_PAGE = 100
-    MIN_RATE_LIMIT = 5  # Stop if rate limit drops below this
+    MIN_RATE_LIMIT = 0  # Stop if rate limit drops below this
     
     def __init__(self, username):
         if not username or not isinstance(username, str):
@@ -27,16 +27,16 @@ class GitHubProfile:
         self._repo_count = 0
         self._rate_limit_remaining = 0
         
-        self._GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
-        if not self._GITHUB_TOKEN:
-            raise ValueError("GITHUB_TOKEN environment variable not set")
-        
-        self._header = {
-            "Authorization": f"Bearer {self._GITHUB_TOKEN}", 
-            "User-Agent": self.USERNAME, 
-            "Accept": "application/vnd.github+json", 
-            "X-GitHub-Api-Version": "2022-11-28" 
-        }
+        self._header = {}
+
+        self._GITHUB_TOKEN = os.environ.get("GITHUB_TOKE")
+        if self._GITHUB_TOKEN:
+            self._header = {
+                "Authorization": f"Bearer {self._GITHUB_TOKEN}", 
+                "User-Agent": self.USERNAME, 
+                "Accept": "application/vnd.github+json", 
+                "X-GitHub-Api-Version": "2022-11-28" 
+            }
     
     def fetch(self):
         self._fetch_user()
