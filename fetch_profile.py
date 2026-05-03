@@ -29,7 +29,9 @@ class GitHubProfile:
         
         self._header = {}
 
-        self._GITHUB_TOKEN = os.environ.get("GITHUB_TOKE")
+        self._GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+        if self._GITHUB_TOKEN == None:
+            print("Warning: No GitHub token found. You may encounter rate limits. Set GITHUB_TOKEN environment variable for better performance.\n\n\n")
         if self._GITHUB_TOKEN:
             self._header = {
                 "Authorization": f"Bearer {self._GITHUB_TOKEN}", 
