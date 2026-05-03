@@ -4,12 +4,20 @@ from requests.exceptions import RequestException, Timeout
 
 
 def main():
-    USERNAME = input("Username: ").strip()
-    if not USERNAME:
-        print("Error: Username cannot be empty")
-        exit(1)
-    
-    level_input = input("Choose Level (1, 2, or 3): ").strip()
+    while True:
+        USERNAME = input("Username: ").strip()
+        if USERNAME:
+            break
+        if USERNAME == "/exit":
+            break
+        
+    while True:
+        level_input = input("Choose Level (1, 2, or 3): ").strip()
+        if level_input in ['1', '2', '3']:
+            break
+        if level_input == "/exit":
+            break
+
     
     # Validate and convert level
     try:
