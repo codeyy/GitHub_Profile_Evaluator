@@ -1,9 +1,39 @@
-from fetch_profile import GitHubProfile
+import sys
+import base64
+
 from scorer import Scorer
+from fetch_profile import GitHubProfile
 from requests.exceptions import RequestException, Timeout
 
-
 def main():
+    try:
+        with open("GITHUB_TOKEN.bin", "r+b") as TOKEN_file:
+            TOKEN = TOKEN_file.read().strip()
+            if not TOKEN:
+                print("No GitHub token Saved. \nPlease enter your GitHub token or type 'skip' to continue without a token.(limited access)")
+                while True:
+                    TOKEN = input("Github Token: ").strip()
+                    if TOKEN.strip().lower() not in ["/exit", "skip"] and TOKEN:
+                        TOKEN_file.write(base64.b64encode(TOKEN.encode('utf-8')))
+                        break
+                    if TOKEN.strip().lower() == "/exit":
+                        sys.exit(0)
+                    if TOKEN.strip().lower() == "skip":
+                        TOKEN = None
+                        break
+    except FileNotFoundError:
+        print("No GitHub token Saved. \nPlease enter your GitHub token or type 'skip' to continue without a token.(limited access)")
+        with open("GITHUB_TOKEN.bin", "w+b") as TOKEN_file:
+            while True:
+                TOKEN = input("Github Token: ").strip()
+                if TOKEN.strip().lower() not in ["/exit", "skip"] and TOKEN:
+                    TOKEN_file.write(base64.b64encode(TOKEN.encode('utf-8')))
+                    break
+                if TOKEN.strip().lower() == "/exit":
+                    sys.exit(0)
+                if TOKEN.strip().lower() == "skip":
+                    break       
+
     while True:
         USERNAME = input("Username: ").strip()
         if USERNAME:

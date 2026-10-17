@@ -1,3 +1,4 @@
+import base64
 import os
 import time
 import requests
@@ -29,7 +30,12 @@ class GitHubProfile:
         
         self._header = {}
 
-        self._GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+        try: 
+            with open("GITHUB_TOKEN.bin", "r") as token_file:
+                self._GITHUB_TOKEN = base64.b64decode(token_file.read().strip()).decode('utf-8')
+        except FileNotFoundError:
+            self._GITHUB_TOKEN = None
+
         if self._GITHUB_TOKEN == None:
             print("Warning: No GitHub token found. You may encounter rate limits. Set GITHUB_TOKEN environment variable for better performance.\n\n\n")
         if self._GITHUB_TOKEN:
@@ -143,6 +149,7 @@ class GitHubProfile:
                 self._rate_limit_remaining = int(remaining)
             except ValueError:
                 pass  # If it's not an integer, just skip
+            print(f"Rate Limit Remaining: {self._rate_limit_remaining}")
 
     def _safe_fetch_languages(self, repo_name):
         try:
