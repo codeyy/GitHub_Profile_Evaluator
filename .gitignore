@@ -1,2 +1,11 @@
 venv
 __pycache__
+
+# PyInstaller outputs
+build/
+dist/
+*.spec
+
+# Your hidden configuration file
+config.txt
+config.enc
