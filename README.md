@@ -1,4 +1,4 @@
-# GitHub Profile Evaluator (GitEval)
+# GitHub Profile Evaluator
 
 A Python tool that evaluates GitHub user profiles based on multiple criteria and provides a comprehensive score at different difficulty levels.
 
@@ -40,7 +40,7 @@ This project analyzes GitHub profiles using the GitHub API to assess developers 
 
 Run the evaluator with:
 ```bash
-./giteval [options]
+./gpe [options]
 ```
 ```bash
 [options] : 
