@@ -6,6 +6,36 @@ from fetch_profile import GitHubProfile
 from requests.exceptions import RequestException, Timeout
 
 def main():
+
+    if len(sys.argv) == 1:
+        pass  # No command-line arguments, proceed normally        
+    elif sys.argv[1].strip().lower() == "--help" or sys.argv[1].strip().lower() == "-h":
+        print("GitHub Profile Evaluator")
+        print("Usage: ./main [options]\n")
+        print('Refer to the README.md file for detailed instructions.\n')
+        print("This program evaluates a GitHub profile based on various criteria.")
+        print("You will be prompted to enter a GitHub username and choose an evaluation level (1, 2, or 3).")
+        print("You can also provide a GitHub token for enhanced access, or type 'skip' to continue without one.")
+        print("Type '/exit' at any prompt to exit the program.")
+        sys.exit(0)
+    elif sys.argv[1].strip().lower() == "--edit-token" or sys.argv[1].strip().lower() == "-et":
+        with open("GITHUB_TOKEN.bin", "wb") as TOKEN_file:
+            while True:
+                TOKEN = input("Github Token: ").strip()
+                if TOKEN.strip().lower() not in ["/exit", "skip"] and TOKEN:
+                    TOKEN_file.write(base64.b64encode(TOKEN.encode('utf-8')))
+                    print("Done.")
+                    break
+                if TOKEN.strip().lower() == "/exit":
+                    break
+        sys.exit(0)
+    elif len(sys.argv) > 2:
+        print("Error: Invalid command-line arguments. Use '/help' for usage instructions.")
+        sys.exit(1)
+    else:
+        print("Error: Invalid command-line argument. Use '/help' for usage instructions.")
+        sys.exit(1)
+
     try:
         with open("GITHUB_TOKEN.bin", "r+b") as TOKEN_file:
             TOKEN = TOKEN_file.read().strip()

@@ -149,7 +149,6 @@ class GitHubProfile:
                 self._rate_limit_remaining = int(remaining)
             except ValueError:
                 pass  # If it's not an integer, just skip
-            print(f"Rate Limit Remaining: {self._rate_limit_remaining}")
 
     def _safe_fetch_languages(self, repo_name):
         try:
