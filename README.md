@@ -23,14 +23,37 @@ This project analyzes GitHub profiles using the GitHub API to assess developers 
 ## Installation
 
 ### Prerequisites
-- Python 3.7+
+- Python 3.7+ (for advance setup)
 - GitHub API Token
 
-### Setup
+### User Setup
+
+1. **Download the Executable**
+
+   Download the latest release of gpe
+
+2. **Set GitHub API Token**
+   
+   Create a [GitHub Personal Access Token](https://github.com/settings/tokens) with public repository access and enter it in application when prompted:
+
+## Usage
+
+Run the evaluator with:
+```bash
+./gpe [options]
+```
+```bash
+[options] : 
+            [--help, -h] for help
+            [--edit-token, -et] to edit your GitHub token
+```
+<br>
+
+### Advance Setup (For Developers)
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/codeyy/GitHub_Profile_Evaluator
    cd GitHub_Profile_Evaluator
    ```
 
@@ -41,22 +64,7 @@ This project analyzes GitHub profiles using the GitHub API to assess developers 
 
 3. **Set GitHub API Token**
    
-   Create a [GitHub Personal Access Token](https://github.com/settings/tokens) with public repository access, then set it as an environment variable:
-   
-   **Windows (PowerShell):**
-   ```powershell
-   $env:GITHUB_TOKEN = "your_token_here"
-   ```
-   
-   **Windows (Command Prompt):**
-   ```cmd
-   set GITHUB_TOKEN=your_token_here
-   ```
-   
-   **macOS/Linux:**
-   ```bash
-   export GITHUB_TOKEN="your_token_here"
-   ```
+   Create a [GitHub Personal Access Token](https://github.com/settings/tokens) with public repository access, and enter when prompted.
 
 ## Usage
 
@@ -65,9 +73,16 @@ Run the evaluator with:
 python main.py
 ```
 
+
+<br>
 You'll be prompted to enter:
-1. **Username** - The GitHub username to evaluate
-2. **Level** - Choose 1, 2, or 3 (increasing difficulty)
+
+1. **GitHub token** - For first setup only enter the GitHub Personal Access Token here 
+2. **Username** - The GitHub username to evaluate
+3. **Level** - Choose 1, 2, or 3 (increasing difficulty)
+
+
+
 
 ### Evaluation Levels
 
